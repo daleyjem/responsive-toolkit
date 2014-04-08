@@ -1,0 +1,120 @@
+// Grids
+// -------------
+// This grid system uses percentage widths that equal their equivalent fraction class names.
+// 		Example: .grid-col-1-3 {width: 33%; }
+// 
+// Note: 
+// -----
+// A .grid-col should never act as more than a container.
+// Ideally, the contents of a .grid-col should be nested as a single and subsequent child element, 
+// where the UI (borders & backgrounds) of that child element is then defined:
+// 		
+// 		<div class="grid-col grid-col-1-2">
+// 			<!-- This element gets a box-like UI with border & background, not the .grid-col itself -->
+// 			<article class="segment segment-default"></article>
+// 		</div>
+// 		
+// Gutters should be defined on .grid-col's specifically within their parent containers:
+// 		i.e.: .segments-homepage .grid-col {padding: 0 5%; }
+// 		
+// 		OR they can take on a default gutter with ".grid-col-default"
+//
+// TODO: 
+// -------
+// Add IE7 fix for its lack of box-sizing support
+
+
+// .grid's
+// -------
+.grid {
+
+}
+
+// For grids where vertical alignment is needed
+.grid-inline {
+	> .grid-col {
+		//display: inline-block;
+		//float: none;
+		//margin-left: -2px;
+	}
+}
+
+
+// .grid-col's
+// -----------
+
+.grid-col {
+	float: left;
+}
+
+.grid-col-default {
+	padding-left: @defaultGridColGutter;
+	padding-right: @defaultGridColGutter;
+}
+
+.grid-col-1-2 {
+	width: 50%;
+}
+
+.grid-col-1-3 {
+	width: 33%;
+}
+
+.grid-col-2-3 {
+	width: 66%;
+}
+
+.grid-col-1-4 {
+	width: 25%;
+}
+
+.grid-col-3-4 {
+	width: 75%;
+}
+
+.grid-col-1-5 {
+	width: 20%;
+}
+
+.grid-col-2-5 {
+	width: 40%;
+}
+
+.grid-col-3-5 {
+	width: 60%;
+}
+
+.grid-col-4-5 {
+	width: 80%;
+}
+
+
+// Grid mixins
+// -----------
+
+// Mixin to apply distributive gutters (padding), where first and last .grid-col's
+// touch the edges of the parent container.
+.grid-gutters-between(@cols, @spacing, @sign:'px') {
+	.grid-gutters-loop (@index) when (@index < @cols) {
+    	> .grid-col {
+    		@n: ~":nth-child("(@index + 1)~")";
+    		&@{n} {
+				@paddingLeft: ((@cols - (@cols - @index)) / @cols) * @spacing;
+      			padding-left: ~"@{paddingLeft}@{sign}";
+      			@paddingRight: ((@cols - (@index + 1)) / @cols) * @spacing;
+      			padding-right: ~"@{paddingRight}@{sign}";
+      		}
+		}
+		// Re-loop
+		.grid-gutters-loop((@index + 1));
+	}
+	.grid-gutters-loop(0);
+}
+
+// TODO:
+// Mixin to apply gutters (padding), where all children in a row get equal
+// left and right padding
+.grid-gutters-surrounding {
+
+}
+

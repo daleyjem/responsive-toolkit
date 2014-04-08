@@ -1,0 +1,42 @@
+// Segments
+// ----------------
+// Outlined boxes that contain
+
+
+//-------------
+// Parent containers/extensions
+
+.segments {
+
+}
+
+.segments-homepage {
+	padding: 2em 0;
+
+	.grid {
+		.grid-gutters-between(4, 1.7, '%');	
+	}
+}
+
+
+//-------------
+// Child items
+
+.segment {
+	padding: 1em 7.5%; // You can modify this padding in any segment "extension" (.segment-homepage, etc.)
+
+	.thumbnail {
+		display: block;
+		margin: auto;
+		height: auto;
+		width: 100%;
+	}
+}
+
+.segment-homepage {
+	text-align: center;
+	background-color: #eee;
+	min-height: 250px;
+	.rounded(3px);
+	border: solid 1px #ccc;
+}

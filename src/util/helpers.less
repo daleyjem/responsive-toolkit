@@ -1,0 +1,26 @@
+// Float modifiers
+.pull-left {
+	float: left;
+}
+
+.pull-right {
+	float: right;
+}
+
+// Padding modifiers
+.pad-vert-small {
+	padding-top: @padVertSmall;
+	padding-bottom: @padVertSmall;
+}
+
+// Clearfix 
+.clearfix:after {
+	visibility: hidden;
+	display: block;
+	font-size: 0;
+	content: " ";
+	clear: both;
+	height: 0;
+	}
+* html .clearfix             { zoom: 1; } /* IE6 */
+*:first-child+html .clearfix { zoom: 1; } /* IE7 */

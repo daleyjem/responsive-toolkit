@@ -1,0 +1,16 @@
+.button {
+	text-decoration: none;
+}
+
+.button-default {
+	color: black;
+	padding: 0.25em 10%;
+	border: solid 1px #999;
+	.rounded(5px);
+	.gradient(#ccc, #999, #eee);
+	display: inline-block;
+
+	&:active {
+		.gradient(#ccc, #eee, #999);
+	}
+}
